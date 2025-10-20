@@ -1,0 +1,6 @@
+com\ecommerce\Cart_Service\CartServiceApplication.class
+com\ecommerce\Cart_Service\controller\CartServiceController.class
+com\ecommerce\Cart_Service\entity\Cart.class
+com\ecommerce\Cart_Service\service\CartService.class
+com\ecommerce\Cart_Service\entity\CartItems.class
+com\ecommerce\Cart_Service\repository\CartRepository.class
