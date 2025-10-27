@@ -20,7 +20,7 @@ KartCom is a microservices-based e-commerce backend built using **Spring Boot**.
 - Spring Boot  
 - Spring Cloud (OpenFeign, Eureka, Gateway)  
 - Spring Security + JWT  
-- MySQL / PostgreSQL  
+- MySQL 
 - Maven  
 - Lombok  
 
