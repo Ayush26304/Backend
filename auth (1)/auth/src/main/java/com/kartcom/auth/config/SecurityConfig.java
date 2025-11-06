@@ -25,7 +25,7 @@ import com.kartcom.auth.filter.JwtFilter;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity // Enables @PreAuthorize and other method-level security annotations
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Autowired
@@ -34,9 +34,6 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtfilter;
 
-    /**
-     * Configures the authentication provider with user details service and password encoder.
-     */
     @Bean
     public AuthenticationProvider authProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -45,9 +42,7 @@ public class SecurityConfig {
         return provider;
     }
 
-    /**
-     * Defines the security filter chain with role-based access and JWT integration.
-     */
+   
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
@@ -64,17 +59,13 @@ public class SecurityConfig {
         return http.build();
     }
 
-    /**
-     * Provides the authentication manager bean used for login authentication.
-     */
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
-    /**
-     * Password encoder bean for encoding and verifying passwords.
-     */
+   
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);

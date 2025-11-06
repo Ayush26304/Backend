@@ -33,4 +33,10 @@ public class JwtUtil {
    public List<String> extractRole(String token){
        return extractClaims(token).get("roles",List.class);
    }
+
+   public Integer extractUserId(String token) {
+	    Claims claims = extractClaims(token);
+	    return claims.get("userId", Integer.class);
+	}
+
 }

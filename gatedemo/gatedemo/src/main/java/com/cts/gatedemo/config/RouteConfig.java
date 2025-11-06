@@ -23,6 +23,8 @@ public class RouteConfig {
                     .uri("lb://CART"))
             .route("order", r -> r.path("/api/order/**")
                     .uri("lb://ORDER"))
+            .route("wishlist", r -> r.path("/api/wishlist/**")
+                    .uri("lb://WISHLIST"))
             .route("test", r -> r.path("/t/**")
                     .uri("lb://TEST"))
             .build();

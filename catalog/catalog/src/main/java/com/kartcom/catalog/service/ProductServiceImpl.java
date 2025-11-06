@@ -3,6 +3,7 @@ package com.kartcom.catalog.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,6 +144,24 @@ public class ProductServiceImpl implements ProductService {
 	        ProductDto dto = new ProductDto();
 	        BeanUtils.copyProperties(product, dto);
 	        dto.setCategoryId(product.getCategory().getId());
+	        dtos.add(dto);
+	    }
+
+	    return dtos;
+	}
+	public List<ProductDto> getLatestProducts() {
+	    List<Product> latestProducts = productRepository.findTop10ByOrderByIdDesc();
+	    List<ProductDto> dtos = new ArrayList<>();
+
+	    for (Product product : latestProducts) {
+	        ProductDto dto = new ProductDto();
+	        dto.setId(product.getId());
+	        dto.setName(product.getName());
+	        dto.setDescription(product.getDescription());
+	        dto.setPrice(product.getPrice());
+	        dto.setStock(product.getStock());
+	        dto.setImageUrl(product.getImageUrl());
+	        dto.setCategoryId(product.getCategory().getId()); // assuming category is an entity
 	        dtos.add(dto);
 	    }
 

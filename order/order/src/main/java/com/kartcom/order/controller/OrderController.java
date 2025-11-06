@@ -83,7 +83,7 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
 
-    // Admin: Delete an order
+    
     @DeleteMapping("/delete/{orderId}")
     public ResponseEntity<Void> deleteOrder(@PathVariable Long orderId) {
         orderService.deleteOrder(orderId);

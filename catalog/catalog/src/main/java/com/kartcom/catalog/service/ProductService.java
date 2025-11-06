@@ -14,5 +14,6 @@ public interface ProductService {
     void deleteProduct(Long id);
     void reduceStock(Long productId, Integer quantity);
 	List<ProductDto> searchProducts(String keyword);
+	List<ProductDto> getLatestProducts();
 }
 

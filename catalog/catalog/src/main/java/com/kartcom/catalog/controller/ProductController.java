@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,10 @@ public class ProductController {
     public ResponseEntity<List<ProductDto>> getAll() {
         return ResponseEntity.ok(service.getAllProducts());
     }
+         @GetMapping("/latest") 
+         public ResponseEntity<List<ProductDto>> getLatestProducts() {
+    	return ResponseEntity.ok(service.getLatestProducts()); 
+    	}
 
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<List<ProductDto>> getByCategory(@PathVariable Long categoryId) {
@@ -42,7 +47,8 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getById(@PathVariable Long id) {
+    public ResponseEntity<ProductDto> getById(@PathVariable Long id ) {
+    
         return ResponseEntity.ok(service.getProductById(id));
     }
 

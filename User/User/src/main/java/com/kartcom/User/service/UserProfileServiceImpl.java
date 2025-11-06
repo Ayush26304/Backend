@@ -64,6 +64,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
         user.setPhone(dto.getPhone());
         user.setFullName(dto.getFullName());
+        user.setEmail(dto.getEmail()); 
         user.setAddressLine1(dto.getAddressLine1());
         user.setAddressLine2(dto.getAddressLine2());
         user.setCity(dto.getCity());

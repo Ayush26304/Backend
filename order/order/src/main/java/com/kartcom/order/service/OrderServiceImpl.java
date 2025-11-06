@@ -21,7 +21,7 @@ import com.kartcom.order.exception.PaymentFailedException;
 import com.kartcom.order.exception.ResourceNotFoundException;
 import com.kartcom.order.exception.StockUnavailableException;
 import com.kartcom.order.feign.CartFeignClient;
-import com.kartcom.order.feign.ProductFeignClient;
+
 import com.kartcom.order.repositoy.OrderRepository;
 
 import jakarta.transaction.Transactional;
@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired private OrderRepository orderRepo;
     @Autowired private CartFeignClient cartClient;
-    @Autowired private ProductFeignClient productClient;
+  //  @Autowired private ProductFeignClient productClient;
 
     @Override
     @Transactional
@@ -44,12 +44,12 @@ public class OrderServiceImpl implements OrderService {
         List<OrderItem> orderItems = new ArrayList<>();
 
         for (CartItemResponseDto cartItem : cartItems) {
-            ProductDto product = productClient.getProductById(cartItem.getProductId());
+            ProductDto product = cartClient.getProductById(cartItem.getProductId());
             if (product.getStock() < cartItem.getQuantity()) {
                 throw new StockUnavailableException("Insufficient stock for " + product.getName());
             }
 
-            productClient.reduceStock(product.getId(), cartItem.getQuantity());
+            cartClient.reduceStock(product.getId(), cartItem.getQuantity());
 
             OrderItem item = new OrderItem();
             item.setProductId(product.getId());

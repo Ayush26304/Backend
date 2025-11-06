@@ -78,27 +78,7 @@ public class SecurityController {
         }
     }
 //
-//    @GetMapping("/validate")
-//    public ResponseEntity<Boolean> validateToken(@RequestHeader("Authorization") String token) {
-//        try {
-//            // Remove "Bearer " prefix if present
-//            String jwtToken = token.startsWith("Bearer ") ? token.substring(7) : token;
-//
-//            // Extract username from token
-//            String username = jwt.extractUserName(jwtToken);
-//
-//            // Load user details from DB
-//            UserDetails userDetails =  ser.loadUserByUsername(username);
-//
-//            // Validate token
-//            boolean isValid = jwt.validateToken(jwtToken, userDetails);
-//            return ResponseEntity.ok(isValid);
-//        } catch (Exception e) {
-//            return ResponseEntity.ok(false); // Return false if validation fails
-//        }
-//    }
-//
-    
+
     
     
     /**

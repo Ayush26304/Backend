@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class UpdateProfileDto {
     private String phone;
     private String fullName;
+    private String Email;
     private String addressLine1;
     private String addressLine2;
     private String city;

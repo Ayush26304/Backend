@@ -36,11 +36,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 System.out.println("=================");
                 List<String> roles=jwtUtil.extractRole(token);
                 System.out.println("===88888888888888");
+                Integer userId = jwtUtil.extractUserId(token);
                 List<GrantedAuthority> authorities=roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
                 System.out.println("===87777777777777");
-                Authentication authentication=new UsernamePasswordAuthenticationToken(username,null,authorities);
+                Authentication authentication=new UsernamePasswordAuthenticationToken(String.valueOf(userId),null,authorities);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-            } catch (Exception e) {
+            }  catch (Exception e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 System.out.println("JWT Error: " + e.getMessage());
                 System.out.println("============4444444=====");
